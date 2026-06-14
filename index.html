@@ -1,0 +1,1044 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmileCare — Премиальная стоматология</title>
+    <style>
+      :root {
+        --accent: #0d9488;
+        --accent-dark: #0f766e;
+        --accent-light: #ccfbf1;
+        --bg: #ffffff;
+        --bg-soft: #f8fafa;
+        --text: #0f172a;
+        --text-soft: #64748b;
+        --radius: 20px;
+        --shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+        --shadow-hover: 0 12px 32px rgba(15, 23, 42, 0.12);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* ===== HEADER ===== */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid #eef2f2;
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 24px;
+        gap: 20px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: var(--text);
+        white-space: nowrap;
+      }
+
+      .logo svg {
+        flex-shrink: 0;
+      }
+
+      nav.main-nav {
+        display: flex;
+        gap: 32px;
+      }
+
+      nav.main-nav a {
+        font-weight: 500;
+        font-size: 0.95rem;
+        color: var(--text-soft);
+        transition: color 0.2s ease;
+      }
+      nav.main-nav a:hover {
+        color: var(--accent);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .phone-link {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: var(--text);
+        white-space: nowrap;
+        transition: color 0.2s ease;
+      }
+      .phone-link:hover {
+        color: var(--accent);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: none;
+        border-radius: 14px;
+        font-family: inherit;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          background 0.2s ease;
+        white-space: nowrap;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        padding: 12px 24px;
+      }
+      .btn-primary:hover {
+        background: var(--accent-dark);
+        box-shadow: 0 0 0 8px rgba(13, 148, 136, 0.15);
+        transform: translateY(-1px);
+      }
+
+      @keyframes pulse-ring {
+        0% {
+          box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 12px rgba(13, 148, 136, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(13, 148, 136, 0);
+        }
+      }
+
+      .pulse-btn:hover {
+        animation: pulse-ring 1.4s ease-out infinite;
+      }
+
+      .btn-large {
+        padding: 16px 32px;
+        font-size: 1.05rem;
+        border-radius: 16px;
+      }
+
+      /* ===== HERO ===== */
+      .hero {
+        padding: 64px 0 80px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 48px;
+        align-items: center;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 20px;
+      }
+
+      .hero h1 .accent {
+        color: var(--accent);
+      }
+
+      .hero p.lead {
+        font-size: 1.125rem;
+        color: var(--text-soft);
+        max-width: 480px;
+        margin-bottom: 32px;
+      }
+
+      /* Calculator card */
+      .calc-card {
+        background: var(--bg-soft);
+        border-radius: var(--radius);
+        padding: 32px;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .calc-card:hover {
+        transform: scale(1.02);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .calc-card h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+
+      .field-group {
+        margin-bottom: 24px;
+      }
+
+      .field-group label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--text-soft);
+        margin-bottom: 8px;
+      }
+
+      select#service {
+        width: 100%;
+        padding: 14px 16px;
+        border-radius: 12px;
+        border: 1px solid #e2e8e8;
+        background: #fff;
+        font-family: inherit;
+        font-size: 1rem;
+        color: var(--text);
+        cursor: pointer;
+        transition: border-color 0.2s ease;
+      }
+      select#service:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+
+      input[type="range"] {
+        width: 100%;
+        height: 6px;
+        border-radius: 3px;
+        background: #e2e8e8;
+        appearance: none;
+        -webkit-appearance: none;
+        outline: none;
+        cursor: pointer;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--accent);
+        cursor: pointer;
+        border: 4px solid #fff;
+        box-shadow: 0 2px 8px rgba(13, 148, 136, 0.4);
+        transition: transform 0.15s ease;
+      }
+      input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.1);
+      }
+      input[type="range"]::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--accent);
+        cursor: pointer;
+        border: 4px solid #fff;
+        box-shadow: 0 2px 8px rgba(13, 148, 136, 0.4);
+      }
+
+      .range-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        color: var(--text-soft);
+        margin-top: 8px;
+      }
+
+      .price-display {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        background: #fff;
+        border-radius: 14px;
+        padding: 20px 24px;
+        margin-top: 8px;
+        border: 1px solid var(--accent-light);
+      }
+
+      .price-display .price-label {
+        font-size: 0.95rem;
+        color: var(--text-soft);
+        font-weight: 600;
+      }
+
+      .price-display .price-value {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--accent);
+        transition: all 0.15s ease;
+      }
+
+      /* ===== TRUST CARDS ===== */
+      .trust-section {
+        padding: 0 0 80px;
+      }
+
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .trust-card {
+        background: var(--bg-soft);
+        border-radius: var(--radius);
+        padding: 28px;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .trust-card:hover {
+        transform: scale(1.02);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .trust-card h4 {
+        font-size: 1.4rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+      }
+
+      .trust-card p.sub {
+        color: var(--text-soft);
+        font-size: 0.9rem;
+        margin-bottom: 16px;
+      }
+
+      .progress-track {
+        width: 100%;
+        height: 10px;
+        border-radius: 5px;
+        background: #e2e8e8;
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      }
+
+      .calendar-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: var(--accent-light);
+        color: var(--accent-dark);
+        margin-bottom: 4px;
+      }
+
+      .avatars {
+        display: flex;
+        gap: 8px;
+        margin-top: 4px;
+      }
+
+      .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #e2e8e8;
+        color: var(--text-soft);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.9rem;
+        border: 2px solid #fff;
+      }
+
+      /* ===== MARQUEE ===== */
+      .marquee-section {
+        background: var(--bg-soft);
+        padding: 32px 0;
+        overflow: hidden;
+        border-top: 1px solid #eef2f2;
+        border-bottom: 1px solid #eef2f2;
+      }
+
+      .marquee-track {
+        display: flex;
+        gap: 48px;
+        width: max-content;
+        animation: marquee 28s linear infinite;
+      }
+
+      .marquee-track span {
+        font-weight: 600;
+        font-size: 1.05rem;
+        color: var(--text-soft);
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .marquee-track span::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        display: inline-block;
+      }
+
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ===== BOOKING ===== */
+      .booking-section {
+        padding: 80px 0;
+      }
+
+      .booking-card {
+        background: var(--bg-soft);
+        border-radius: var(--radius);
+        padding: 40px;
+        box-shadow: var(--shadow);
+        max-width: 680px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .booking-card h2 {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+
+      .booking-card p.sub {
+        color: var(--text-soft);
+        margin-bottom: 28px;
+      }
+
+      .slots-block {
+        margin-top: 28px;
+        text-align: left;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition:
+          max-height 0.4s ease,
+          opacity 0.3s ease;
+      }
+      .slots-block.open {
+        max-height: 600px;
+        opacity: 1;
+      }
+
+      .date-pills {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .pill {
+        padding: 10px 20px;
+        border-radius: 999px;
+        border: 1px solid #e2e8e8;
+        background: #fff;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: var(--text);
+      }
+      .pill.active {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+      }
+      .pill:hover:not(.active) {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .time-slots {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+      }
+
+      .time-slot {
+        padding: 10px 18px;
+        border-radius: 12px;
+        border: 1px solid #e2e8e8;
+        background: #fff;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .time-slot.selected {
+        background: var(--accent-light);
+        border-color: var(--accent);
+        color: var(--accent-dark);
+      }
+      .time-slot:hover {
+        border-color: var(--accent);
+      }
+
+      .contact-methods {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .contact-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: #fff;
+        border: 1px solid #e2e8e8;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: var(--text-soft);
+      }
+      .contact-icon:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+
+      .confirm-note {
+        margin-top: 16px;
+        font-size: 0.85rem;
+        color: var(--text-soft);
+        min-height: 20px;
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        background: var(--bg-soft);
+        padding: 48px 0 32px;
+        border-top: 1px solid #eef2f2;
+      }
+
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 24px;
+        align-items: center;
+      }
+
+      .footer-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        font-size: 0.92rem;
+        color: var(--text-soft);
+      }
+
+      .footer-info span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 0.85rem;
+      }
+      .status-open {
+        background: #dcfce7;
+        color: #15803d;
+      }
+      .status-closed {
+        background: #fee2e2;
+        color: #b91c1c;
+      }
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+
+      .footer-bottom {
+        margin-top: 24px;
+        padding-top: 24px;
+        border-top: 1px solid #e2e8e8;
+        font-size: 0.85rem;
+        color: var(--text-soft);
+        text-align: center;
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 768px) {
+        .header-inner {
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+        nav.main-nav {
+          order: 3;
+          width: 100%;
+          justify-content: center;
+          gap: 20px;
+        }
+        .header-actions {
+          gap: 12px;
+        }
+        .phone-link {
+          display: none;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .hero {
+          padding: 40px 0 56px;
+        }
+
+        .trust-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .booking-card {
+          padding: 28px 20px;
+        }
+        .contact-methods {
+          gap: 14px;
+        }
+
+        .footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* Focus visibility */
+      a:focus-visible,
+      button:focus-visible,
+      select:focus-visible,
+      input:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header>
+      <div class="header-inner">
+        <a href="#top" class="logo" aria-label="SmileCare — на главную">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 2C8.5 2 5 3.8 5 7.5C5 10 5.8 11.3 6.3 13.5C6.8 15.8 7 19.5 8.5 21.5C9.2 22.4 10.3 21.8 10.6 20.5C11 18.8 11.2 16 12 16C12.8 16 13 18.8 13.4 20.5C13.7 21.8 14.8 22.4 15.5 21.5C17 19.5 17.2 15.8 17.7 13.5C18.2 11.3 19 10 19 7.5C19 3.8 15.5 2 12 2Z"
+              fill="#0D9488"
+            />
+          </svg>
+          SmileCare
+        </a>
+        <nav class="main-nav" aria-label="Основная навигация">
+          <a href="#services">Услуги</a>
+          <a href="#about">О нас</a>
+          <a href="#contacts">Контакты</a>
+        </nav>
+        <div class="header-actions">
+          <a href="tel:+79991234567" class="phone-link">+7 (999) 123-45-67</a>
+          <a href="#booking" class="btn btn-primary pulse-btn"
+            >Записаться онлайн</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- ===== HERO ===== -->
+      <section class="hero container">
+        <div class="hero-grid">
+          <div>
+            <h1>
+              Стоматология, в которую
+              <span class="accent">не страшно</span> идти. Результат за 1 визит
+            </h1>
+            <p class="lead">
+              Работаем по европейским протоколам. Гарантия безболезненности на
+              каждом этапе лечения.
+            </p>
+            <a href="#booking" class="btn btn-primary btn-large pulse-btn"
+              >Записаться на приём</a
+            >
+          </div>
+
+          <div class="calc-card" id="services">
+            <h3>Рассчитайте стоимость</h3>
+
+            <div class="field-group">
+              <label for="service">Услуга</label>
+              <select id="service">
+                <option value="0">Имплантация</option>
+                <option value="1">Отбеливание</option>
+                <option value="2">Чистка</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="complexity">Сложность</label>
+              <input
+                type="range"
+                id="complexity"
+                min="0"
+                max="100"
+                value="20"
+                aria-describedby="complexityHint"
+              />
+              <div class="range-row">
+                <span>Низкая</span>
+                <span id="complexityValue">20%</span>
+                <span>Высокая</span>
+              </div>
+              <p
+                id="complexityHint"
+                class="visually-hidden"
+                style="display: none"
+              >
+                Двигайте ползунок, чтобы изменить итоговую стоимость
+              </p>
+            </div>
+
+            <div class="price-display">
+              <span class="price-label">Итоговая стоимость:</span>
+              <span class="price-value" id="priceValue">7 000 ₽</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== TRUST CARDS ===== -->
+      <section
+        class="trust-section container"
+        id="about"
+        aria-label="Преимущества клиники"
+      >
+        <div class="trust-grid">
+          <div class="trust-card">
+            <h4>0% боли</h4>
+            <p class="sub">Анестезия</p>
+            <div
+              class="progress-track"
+              role="img"
+              aria-label="Уровень анестезии 100%"
+            >
+              <div class="progress-fill"></div>
+            </div>
+          </div>
+
+          <div class="trust-card">
+            <div class="calendar-icon" aria-hidden="true">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </div>
+            <h4>5 лет гарантии</h4>
+            <p class="sub">На все виды протезирования и реставрации</p>
+          </div>
+
+          <div class="trust-card">
+            <h4>50+ отзывов 5⭐</h4>
+            <p class="sub">Пациенты рекомендуют нас друзьям и близким</p>
+            <div class="avatars" aria-hidden="true">
+              <div class="avatar">А</div>
+              <div class="avatar">Б</div>
+              <div class="avatar">В</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== MARQUEE ===== -->
+      <section class="marquee-section" aria-label="Партнёры и награды">
+        <div class="marquee-track" aria-hidden="true">
+          <span>Стоматологическая ассоциация</span>
+          <span>Премия 2024</span>
+          <span>Страховая компания</span>
+          <span>Рекомендовано</span>
+          <span>Лидер рынка</span>
+          <span>Стоматологическая ассоциация</span>
+          <span>Премия 2024</span>
+          <span>Страховая компания</span>
+          <span>Рекомендовано</span>
+          <span>Лидер рынка</span>
+        </div>
+      </section>
+
+      <!-- ===== BOOKING ===== -->
+      <section class="booking-section container" id="booking">
+        <div class="booking-card">
+          <h2>Запишитесь на удобное время</h2>
+          <p class="sub">
+            Выберите дату и время — мы свяжемся с вами для подтверждения
+          </p>
+
+          <button
+            class="btn btn-primary btn-large pulse-btn"
+            id="chooseTimeBtn"
+            aria-expanded="false"
+            aria-controls="slotsBlock"
+          >
+            Выбрать время
+          </button>
+
+          <div class="slots-block" id="slotsBlock">
+            <div class="date-pills" role="group" aria-label="Выбор даты">
+              <button class="pill active" data-date="today">Сегодня</button>
+              <button class="pill" data-date="tomorrow">Завтра</button>
+              <button class="pill" data-date="after">Послезавтра</button>
+            </div>
+
+            <div class="time-slots" role="group" aria-label="Выбор времени">
+              <button class="time-slot">10:00</button>
+              <button class="time-slot">11:30</button>
+              <button class="time-slot">14:00</button>
+            </div>
+
+            <p class="sub" style="margin-bottom: 16px">Как с вами связаться?</p>
+            <div class="contact-methods">
+              <button
+                class="contact-icon"
+                aria-label="Связаться через Telegram"
+              >
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M21.9 4.6c.2-.9-.7-1.6-1.5-1.2L2.3 10.8c-.9.4-.9 1.6 0 2l4.5 1.5 1.7 5.6c.2.7 1.1.9 1.6.4l2.5-2.4 4.7 3.5c.7.5 1.7.1 1.9-.7L21.9 4.6zM8.2 13.7l9.4-6-7.4 7-.3 2.7-1.7-3.7z"
+                  />
+                </svg>
+              </button>
+              <button
+                class="contact-icon"
+                aria-label="Связаться через WhatsApp"
+              >
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.9-.4-1.8-1-2.6-1.8-.7-.7-1.3-1.5-1.7-2.4-.1-.2 0-.4.1-.6.2-.2.7-.7.9-1 .1-.2.1-.4 0-.6-.1-.2-.7-1.7-1-2.3-.2-.5-.5-.4-.7-.4-.5 0-1 .2-1.4.6-1.6 1.7-1.2 3.9.4 6 1.8 2.5 4.4 4.3 7.3 4.9 1.6.3 3-.1 4-1.3.4-.4.6-1 .5-1.5-.1-.2-.3-.3-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2.3 21l3.9-1.1c1.5.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"
+                  />
+                </svg>
+              </button>
+              <button class="contact-icon" aria-label="Заказать звонок">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <p class="confirm-note" id="confirmNote" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="contacts">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-info">
+            <span>📍 Москва, ул. Центральная, 1</span>
+            <span>Режим работы: 9:00 - 21:00</span>
+          </div>
+          <span class="status-badge" id="statusBadge">
+            <span class="status-dot"></span>
+            <span id="statusText">Загрузка статуса…</span>
+          </span>
+        </div>
+        <div class="footer-bottom">© 2026 SmileCare. Все права защищены.</div>
+      </div>
+    </footer>
+
+    <script>
+      // ===== PRICE CALCULATOR =====
+      const basePrices = [5000, 5000, 5000]; // Имплантация, Отбеливание, Чистка
+      const serviceSelect = document.getElementById("service");
+      const complexitySlider = document.getElementById("complexity");
+      const complexityValue = document.getElementById("complexityValue");
+      const priceValue = document.getElementById("priceValue");
+
+      function formatPrice(num) {
+        return Math.round(num).toLocaleString("ru-RU") + " ₽";
+      }
+
+      function updatePrice() {
+        const base = basePrices[serviceSelect.value];
+        const complexity = parseInt(complexitySlider.value, 10);
+        complexityValue.textContent = complexity + "%";
+        // base price + multiplier based on complexity (0% -> x1, 100% -> x3)
+        const multiplier = 1 + (complexity / 100) * 2;
+        const total = base * multiplier;
+        priceValue.textContent = formatPrice(total);
+      }
+
+      serviceSelect.addEventListener("change", updatePrice);
+      complexitySlider.addEventListener("input", updatePrice);
+      updatePrice();
+
+      // ===== BOOKING SLOTS =====
+      const chooseTimeBtn = document.getElementById("chooseTimeBtn");
+      const slotsBlock = document.getElementById("slotsBlock");
+      const datePills = document.querySelectorAll(".pill");
+      const timeSlots = document.querySelectorAll(".time-slot");
+      const confirmNote = document.getElementById("confirmNote");
+
+      chooseTimeBtn.addEventListener("click", () => {
+        const isOpen = slotsBlock.classList.toggle("open");
+        chooseTimeBtn.setAttribute("aria-expanded", isOpen);
+      });
+
+      datePills.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          datePills.forEach((p) => p.classList.remove("active"));
+          pill.classList.add("active");
+          confirmNote.textContent = "";
+          timeSlots.forEach((t) => t.classList.remove("selected"));
+        });
+      });
+
+      timeSlots.forEach((slot) => {
+        slot.addEventListener("click", () => {
+          timeSlots.forEach((t) => t.classList.remove("selected"));
+          slot.classList.add("selected");
+          const activeDate = document.querySelector(".pill.active").textContent;
+          confirmNote.textContent = `Вы выбрали: ${activeDate}, ${slot.textContent}. Мы свяжемся с вами для подтверждения.`;
+        });
+      });
+
+      // ===== OPEN / CLOSED STATUS =====
+      const statusBadge = document.getElementById("statusBadge");
+      const statusText = document.getElementById("statusText");
+
+      function updateStatus() {
+        const now = new Date();
+        const hours = now.getHours();
+        const isOpen = hours < 21;
+        if (isOpen) {
+          statusBadge.classList.add("status-open");
+          statusBadge.classList.remove("status-closed");
+          statusText.textContent = "Сейчас открыто";
+        } else {
+          statusBadge.classList.add("status-closed");
+          statusBadge.classList.remove("status-open");
+          statusText.textContent = "Закрыто";
+        }
+      }
+      updateStatus();
+    </script>
+  </body>
+</html>
